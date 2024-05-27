@@ -1,5 +1,5 @@
 # Efficient-KAN-in-Chinese
-详细的中文注释+使用例子
+详细的中文注释+使用例（更完备的例子请查看https://github.com/lgy112112/KANvsVGGonCIFAR10）
 Sourced from https://github.com/Blealtan/efficient-kan
 
 ## KAN Linear Layers Example
