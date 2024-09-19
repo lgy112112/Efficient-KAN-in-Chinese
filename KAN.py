@@ -1,6 +1,7 @@
 import torch
 import torch.nn.functional as F
 import math
+from torchinfo import summary
 
 
 class KANLinear(torch.nn.Module):
@@ -466,3 +467,48 @@ class KAN(torch.nn.Module):
             layer.regularization_loss(regularize_activation, regularize_entropy)
             for layer in self.layers
         )
+
+def demo():
+    # 定义模型的隐藏层结构，每层的输入和输出维度
+    layers_hidden = [64, 128, 256, 128, 64, 32]
+
+    # 创建5层的FourierKAN模型
+    model = KAN(
+        layers_hidden,
+        grid_size=5,
+        spline_order=3,
+        scale_noise=0.1,
+        scale_base=1.0,
+        scale_spline=1.0,
+        base_activation=torch.nn.SiLU,
+        grid_eps=0.02,
+        grid_range=[-1, 1],
+    )
+
+    # 打印模型结构
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model.to(device)
+
+    # 使用torchsummary输出模型结构
+    summary(model, input_size=(64,))  # 假设输入特征为64维
+
+if __name__ == "__main__":
+    demo()
+
+# ==========================================================================================
+# Layer (type:depth-idx)                   Output Shape              Param #
+# ==========================================================================================
+# KAN                                      [32]                      --
+# ├─ModuleList: 1-1                        --                        --
+# │    └─KANLinear: 2-1                    [128]                     81,920
+# │    │    └─SiLU: 3-1                    [1, 64]                   --
+# │    └─KANLinear: 2-2                    [256]                     327,680
+# │    │    └─SiLU: 3-2                    [1, 128]                  --
+# │    └─KANLinear: 2-3                    [128]                     327,680
+# │    │    └─SiLU: 3-3                    [1, 256]                  --
+# │    └─KANLinear: 2-4                    [64]                      81,920
+# │    │    └─SiLU: 3-4                    [1, 128]                  --
+# │    └─KANLinear: 2-5                    [32]                      20,480
+# │    │    └─SiLU: 3-5                    [1, 64]                   --
+# ==========================================================================================
+# Total params: 839,680
