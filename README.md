@@ -1,6 +1,6 @@
 # Efficient-KAN-in-Chinese
 
-本仓库收集并整理了多种基于 Kolmogorov-Arnold 网络（KAN）的高效实现，包括 FourierKAN、ChebyKAN、JacobiKAN、TaylorKAN 和 WaveletKAN 等。这些实现旨在提供对不同类型 KAN 模型的深入理解和便捷使用。
+本仓库收集并整理了多种基于 Kolmogorov-Arnold 网络（KAN）的高效实现，包括 FourierKAN、ChebyKAN、JacobiKAN、TaylorKAN 和 WaveletKAN 等。这些实现旨在提供对不同类型 KAN 模型的深入理解和便捷使用，为了方便观看、阅读和修改，本人基于[Efficient-KAN](https://github.com/Blealtan/efficient-kan)仓库的写法对变种KAN进行重构。
 
 ## 目录
 
@@ -61,6 +61,7 @@ Kolmogorov-Arnold 网络（KAN）是一类基于 Kolmogorov-Arnold 表示定理�
 
 特别感谢以下开源项目对本仓库的支持和贡献：
 
+- [EfficientKAN](https://github.com/Blealtan/efficient-kan)
 - [JacobiKAN](https://github.com/SpaceLearner/JacobiKAN)
 - [TaylorKAN](https://github.com/Muyuzhierchengse/TaylorKAN/)
 - [Wav-KAN](https://github.com/zavareh1/Wav-KAN)
