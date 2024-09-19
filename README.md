@@ -74,4 +74,4 @@ Kolmogorov-Arnold 网络（KAN）是一类基于 Kolmogorov-Arnold 表示定理�
 
 ---
 
-欢迎大家提出建议和改进，共同完善本仓库。如有任何问题，请提交 [Issue](https://github.com/your-repo/Efficient-KAN-in-Chinese/issues) 或 [Pull Request](https://github.com/your-repo/Efficient-KAN-in-Chinese/pulls)。
+欢迎大家提出建议和改进，共同完善本仓库。如有任何问题，请提交 [Issue](https://github.com/lgy112112/Efficient-KAN-in-Chinese/issues) 或 [Pull Request](https://github.com/lgy112112/Efficient-KAN-in-Chinese/pulls)。
