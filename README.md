@@ -87,6 +87,10 @@ Kolmogorov-Arnold 网络（KAN）是一类基于 Kolmogorov-Arnold 表示定理�
 
 本项目采用 [MIT 许可证](LICENSE) 开源。
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=lgy112112/Efficient-KAN-in-Chinese)](https://star-history.com/#lgy112112/Efficient-KAN-in-Chinese&Date)
+
 ---
 
 欢迎大家提出建议和改进，共同完善本仓库。如有任何问题，请提交 [Issue](https://github.com/lgy112112/Efficient-KAN-in-Chinese/issues) 或 [Pull Request](https://github.com/lgy112112/Efficient-KAN-in-Chinese/pulls)。
