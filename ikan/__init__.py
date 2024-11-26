@@ -1,4 +1,4 @@
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 # __init__.py 文件
 from .KAN import KANLinear, KAN
 # 你可以根据需求导入其他模块的内容
