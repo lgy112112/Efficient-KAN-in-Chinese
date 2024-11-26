@@ -2,9 +2,71 @@
 
 本仓库收集并整理了多种基于 Kolmogorov-Arnold 网络（KAN）的高效实现，包括 FourierKAN、ChebyKAN、JacobiKAN、TaylorKAN 和 WaveletKAN 等。这些实现旨在提供对不同类型 KAN 模型的深入理解和便捷使用。为了方便观看、阅读和修改，本人基于 [Efficient-KAN](https://github.com/Blealtan/efficient-kan) 仓库的写法对变种 KAN 进行重构。
 
+---
+
+## 安装
+
+### 从 PyPI 安装
+可以直接通过 [PyPI](https://pypi.org/project/efficient-kan/) 使用 `pip` 进行安装：
+```bash
+pip install ikan
+```
+
+### 从 GitHub 安装（开发版本）
+若需要安装最新的开发版本，可以从 GitHub 仓库直接安装：
+```bash
+pip install git+https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
+```
+
+### 从源码安装
+你也可以从源码安装：
+1. 克隆项目仓库：
+   ```bash
+   git clone https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
+   ```
+2. 进入项目目录：
+   ```bash
+   cd Efficient-KAN-in-Chinese
+   ```
+3. 使用可编辑模式安装：
+   ```bash
+   pip install -e .
+   ```
+
+---
+
+## 依赖
+本项目依赖以下 Python 库：
+- `torch>=1.9.0`
+- `torchinfo`
+- `numpy`
+
+通过 `pip` 安装时会自动安装这些依赖。
+
+---
+
+## 使用示例
+以下是如何使用本项目的一个简单示例：
+
+```python
+import efficient_kan  # 替换为实际模块名称
+from efficient_kan.ChebyKAN import SomeClassOrFunction  # 替换为具体函数或类
+
+# 示例用法
+result = SomeClassOrFunction(input_data)
+print(result)
+```
+---
+
 ## 目录
 
 - [Efficient-KAN-in-Chinese](#efficient-kan-in-chinese)
+  - [安装](#安装)
+    - [从 PyPI 安装](#从-pypi-安装)
+    - [从 GitHub 安装（开发版本）](#从-github-安装开发版本)
+    - [从源码安装](#从源码安装)
+  - [依赖](#依赖)
+  - [使用示例](#使用示例)
   - [目录](#目录)
   - [简介](#简介)
   - [实现](#实现)
