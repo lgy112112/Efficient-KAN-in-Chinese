@@ -1,23 +1,37 @@
+Metadata-Version: 2.1
+Name: ikan
+Version: 0.1.0
+Summary: An efficient KAN implementation in Chinese.
+Home-page: https://github.com/lgy112112/Efficient-KAN-in-Chinese
+Author: Guoying LIAO
+Author-email: lgy112112@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch>=1.9.0
+Requires-Dist: torchinfo
+Requires-Dist: numpy
+
 # Efficient-KAN-in-Chinese
 
 本仓库收集并整理了多种基于 Kolmogorov-Arnold 网络（KAN）的高效实现，包括 FourierKAN、ChebyKAN、JacobiKAN、TaylorKAN 和 WaveletKAN 等。这些实现旨在提供对不同类型 KAN 模型的深入理解和便捷使用。为了方便观看、阅读和修改，本人基于 [Efficient-KAN](https://github.com/Blealtan/efficient-kan) 仓库的写法对变种 KAN 进行重构。
 
 ## 目录
 
-- [Efficient-KAN-in-Chinese](#efficient-kan-in-chinese)
-  - [目录](#目录)
-  - [简介](#简介)
-  - [实现](#实现)
-    - [KAN](#kan)
-    - [FourierKAN](#fourierkan)
-    - [ChebyKAN](#chebykan)
-    - [JacobiKAN](#jacobikan)
-    - [TaylorKAN](#taylorkan)
-    - [WaveletKAN](#waveletkan)
-  - [应用实例](#应用实例)
-  - [参考资料](#参考资料)
-  - [许可证](#许可证)
-  - [Star History](#star-history)
+- [简介](#简介)
+- [实现](#实现)
+  - [KAN](#kan)
+  - [FourierKAN](#fourierkan)
+  - [ChebyKAN](#chebykan)
+  - [JacobiKAN](#jacobikan)
+  - [TaylorKAN](#taylorkan)
+  - [WaveletKAN](#waveletkan)
+- [应用实例](#应用实例)
+- [参考资料](#参考资料)
+- [许可证](#许可证)
 
 ## 简介
 
@@ -29,37 +43,37 @@ Kolmogorov-Arnold 网络（KAN）是一类基于 Kolmogorov-Arnold 表示定理�
 
 基础的 KAN 实现，使用了 B 样条作为基函数，提供了对 KAN 模型的基本理解。
 
-- 源代码：[KAN.py](ikan\KAN.py)
+- 源代码：[KAN.py](KAN.py)
 
 ### FourierKAN
 
 使用傅里叶级数作为基函数的 KAN 实现，能够捕捉输入数据的周期性特征。
 
-- 源代码：[FourierKAN.py](ikan\FourierKAN.py)
+- 源代码：[FourierKAN.py](FourierKAN.py)
 
 ### ChebyKAN
 
 使用 Chebyshev 多项式作为基函数的 KAN 实现，具有良好的数值稳定性和逼近能力。
 
-- 源代码：[ChebyKAN.py](ikan\ChebyKAN.py)
+- 源代码：[ChebyKAN.py](ChebyKAN.py)
 
 ### JacobiKAN
 
 使用 Jacobi 多项式作为基函数的 KAN 实现，通过调整参数 \( a \) 和 \( b \)，可以灵活地适应不同的数据分布。
 
-- 源代码：[JacobiKAN.py](ikan\JacobiKAN.py)
+- 源代码：[JacobiKAN.py](JacobiKAN.py)
 
 ### TaylorKAN
 
 使用泰勒级数展开作为基函数的 KAN 实现，适用于需要高阶非线性特征的任务。
 
-- 源代码：[TaylorKAN.py](ikan\TaylorKAN.py)
+- 源代码：[TaylorKAN.py](TaylorKAN.py)
 
 ### WaveletKAN
 
 使用小波变换作为基函数的 KAN 实现，能够捕捉数据的局部特征或频域特征。
 
-- 源代码：[WaveletKAN.py](ikan\WaveletKAN.py)
+- 源代码：[WaveletKAN.py](WaveletKAN.py)
 
 ## 应用实例
 
