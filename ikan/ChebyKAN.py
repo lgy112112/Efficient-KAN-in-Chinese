@@ -82,8 +82,8 @@ class ChebyKANLinear(torch.nn.Module):
         返回:
             torch.Tensor: Chebyshev 多项式值，形状为 (batch_size, in_features, degree + 1)
         """
-        # 将 x 缩放到 [-1, 1] 区间
-        x = torch.tanh(x)
+        # 将 x 缩放到 [-1, 1] 区间，并且用clamp裁剪，否则会出现nan
+        x = torch.tanh(x.clamp(-1,1))
 
         # 计算 arccos(x)，以便使用 Chebyshev 多项式的三角函数定义
         theta = torch.acos(x)  # 形状为 (batch_size, in_features)
@@ -156,11 +156,11 @@ class ChebyKAN(torch.nn.Module):
     def __init__(
         self,
         layers_hidden,
-        degree=5,
+        degree=7,
         scale_base=1.0,
         scale_cheby=1.0,
         base_activation=torch.nn.SiLU,
-        use_bias=True,
+        use_bias=False,
     ):
         """
         初始化 ChebyKAN 模型。
