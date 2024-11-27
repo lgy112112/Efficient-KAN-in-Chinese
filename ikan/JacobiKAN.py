@@ -90,21 +90,20 @@ class JacobiKANLinear(torch.nn.Module):
         # 将 x 缩放到 [-1, 1] 区间
         x = torch.tanh(x)
 
-        batch_size = x.size(0)
-        in_features = x.size(1)
-
-        # 初始化 Jacobi 多项式张量
+        batch_size, in_features = x.size()
+        # 初始化 Jacobi 多项式张量，存储所有阶的值
         jacobi = torch.zeros(batch_size, in_features, self.degree + 1, device=x.device)
         jacobi[:, :, 0] = 1.0  # P_0(x) = 1
 
         if self.degree >= 1:
-            # 计算 P_1(x)
-            jacobi[:, :, 1] = 0.5 * ((2 * (self.a + 1)) * x + (self.a - self.b))
+            jacobi[:, :, 1] = 0.5 * ((2 * (self.a + 1)) * x + (self.a - self.b))  # P_1(x)
 
-        # 使用递推公式计算更高阶的 Jacobi 多项式
+        # 递推计算 Jacobi 多项式
         for n in range(2, self.degree + 1):
-            n = n - 1  # 因为索引从 0 开始
-            k = n + 1
+            n_minus_1 = jacobi[:, :, n - 1]  # P_{n-1}(x)
+            n_minus_2 = jacobi[:, :, n - 2]  # P_{n-2}(x)
+
+            k = n - 1
             alpha_n = 2 * k * (k + self.a + self.b) * (2 * k + self.a + self.b - 2)
             beta_n = (2 * k + self.a + self.b - 1) * (self.a ** 2 - self.b ** 2)
             gamma_n = (2 * k + self.a + self.b - 2) * (2 * k + self.a + self.b - 1) * (2 * k + self.a + self.b)
@@ -113,9 +112,15 @@ class JacobiKANLinear(torch.nn.Module):
             A = (beta_n + alpha_n * x) / gamma_n
             B = delta_n / gamma_n
 
-            jacobi[:, :, n + 1] = (A * jacobi[:, :, n] - B * jacobi[:, :, n - 1])
+            # 使用新张量保存当前递推结果
+            next_jacobi = A * n_minus_1 - B * n_minus_2
+            jacobi = torch.cat([jacobi[:, :, :n], next_jacobi.unsqueeze(2)], dim=2)
 
         return jacobi  # 形状为 (batch_size, in_features, degree + 1)
+
+
+
+
 
     def forward(self, x: torch.Tensor):
         """
