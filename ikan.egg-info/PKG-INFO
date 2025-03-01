@@ -11,9 +11,6 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 License-File: LICENSE
-Requires-Dist: torch>=1.9.0
-Requires-Dist: torchinfo
-Requires-Dist: numpy
 
 # Efficient-KAN-in-Chinese
 

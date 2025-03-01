@@ -83,7 +83,8 @@ class ChebyKANLinear(torch.nn.Module):
             torch.Tensor: Chebyshev 多项式值，形状为 (batch_size, in_features, degree + 1)
         """
         # 将 x 缩放到 [-1, 1] 区间，并且用clamp裁剪，否则会出现nan
-        x = torch.tanh(x.clamp(-1,1))
+        # x = torch.tanh(x.clamp(-1,1))
+        x = torch.tanh(x)
 
         # 计算 arccos(x)，以便使用 Chebyshev 多项式的三角函数定义
         theta = torch.acos(x)  # 形状为 (batch_size, in_features)

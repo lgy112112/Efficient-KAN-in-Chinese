@@ -11,12 +11,15 @@
 ```bash
 pip install ikan
 ```
+随后请不要忘记重启一下IDE以保证安装完整。
 
 ### 从 GitHub 安装（开发版本）
 若需要安装最新的开发版本，可以从 GitHub 仓库直接安装：
 ```bash
 pip install git+https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
 ```
+随后请不要忘记重启一下IDE以保证安装完整。
+
 
 ### 从源码安装
 你也可以从源码安装：
@@ -32,6 +35,8 @@ pip install git+https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
    ```bash
    pip install -e .
    ```
+随后请不要忘记重启一下IDE以保证安装完整。
+  
 
 ---
 
