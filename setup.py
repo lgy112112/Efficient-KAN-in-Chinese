@@ -14,6 +14,7 @@ setup(
         "torch>=1.9.0",
         "torchinfo",
         "numpy",
+        "scikit-learn",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

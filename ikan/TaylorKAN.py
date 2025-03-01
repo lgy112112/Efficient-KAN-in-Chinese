@@ -154,8 +154,8 @@ class TaylorKAN(torch.nn.Module):
         self,
         layers_hidden,
         order=3,
-        scale_base=1.0,
-        scale_taylor=1.0,
+        scale_base=0.5,
+        scale_taylor=0.3,
         base_activation=torch.nn.SiLU,
         use_bias=True,
     ):
@@ -226,8 +226,8 @@ def demo():
     model = TaylorKAN(
         layers_hidden=layers_hidden,
         order=5,  # 设置泰勒级数的阶数
-        scale_base=1.0,
-        scale_taylor=1.0,
+        scale_base=0.5,
+        scale_taylor=0.3,
         base_activation=torch.nn.SiLU,  # 使用 SiLU 作为激活函数
         use_bias=True,
     )

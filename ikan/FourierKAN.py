@@ -190,9 +190,9 @@ class FourierKAN(torch.nn.Module):
     def __init__(
         self,
         layers_hidden,
-        num_frequencies=10,
-        scale_base=1.0,
-        scale_fourier=1.0,
+        num_frequencies=5,
+        scale_base=0.1,
+        scale_fourier=0.05,
         base_activation=torch.nn.SiLU,
         use_bias=True,
         smooth_initialization=False,

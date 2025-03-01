@@ -4,6 +4,48 @@
 
 ---
 
+## 目录
+
+- [Efficient-KAN-in-Chinese](#efficient-kan-in-chinese)
+  - [重大更新](#重大更新)
+  - [安装](#安装)
+    - [从 PyPI 安装](#从-pypi-安装)
+    - [从 GitHub 安装（开发版本）](#从-github-安装开发版本)
+    - [从源码安装](#从源码安装)
+  - [依赖](#依赖)
+  - [使用示例](#使用示例)
+  - [目录](#目录)
+  - [简介](#简介)
+  - [实现](#实现)
+    - [KAN](#kan)
+    - [FourierKAN](#fourierkan)
+    - [ChebyKAN](#chebykan)
+    - [JacobiKAN](#jacobikan)
+    - [TaylorKAN](#taylorkan)
+    - [WaveletKAN](#waveletkan)
+  - [应用实例](#应用实例)
+  - [参考资料](#参考资料)
+  - [许可证](#许可证)
+  - [Star History](#star-history)
+
+---
+
+## 重大更新
+
+### 1. 各类KAN默认参数调整
+
+在深入研究各种KAN变体的性能后，我对默认参数进行了关键调整，主要针对初始化方式和缩放系数：
+- **所有KAN**：`scale_base`从1.0降至0.5以下
+- **ChebyKAN**：`scale_cheby`从1.0降至0.5
+- **FourierKAN**：将`scale_fourier`从1.0降至0.3
+- **JacobiKAN**：将`scale_jacobi`从1.0降至0.4
+- **TaylorKAN**：将`scale_taylor`从1.0降至0.5
+- **WaveletKAN**：将`scale_wavelet`从1.0降至0.5
+
+通过`KAN.ipynb`可以测试，在相同迭代次数下**超越传统MLP**。测试结果显示，参数调整后的KAN模型不仅训练速度更快，收敛性更好，而且在拟合复杂函数时的精度也明显提高。
+
+---
+
 ## 安装
 
 ### 从 PyPI 安装
@@ -54,37 +96,25 @@ pip install git+https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
 以下是如何使用本项目的一个简单示例：
 
 ```python
-import efficient_kan  # 替换为实际模块名称
-from efficient_kan.ChebyKAN import SomeClassOrFunction  # 替换为具体函数或类
+from ikan.ChebyKAN import ChebyKAN
 
-# 示例用法
-result = SomeClassOrFunction(input_data)
-print(result)
+model = ChebyKAN(
+    layers_hidden=layers_hidden,
+    degree=5,
+    scale_base=1.0,
+    scale_cheby=1.0,
+    base_activation=torch.nn.SiLU,
+    use_bias=True,
+)
+
+summary(model, input_size=(64,))
+
 ```
 ---
 
-## 目录
 
-- [Efficient-KAN-in-Chinese](#efficient-kan-in-chinese)
-  - [安装](#安装)
-    - [从 PyPI 安装](#从-pypi-安装)
-    - [从 GitHub 安装（开发版本）](#从-github-安装开发版本)
-    - [从源码安装](#从源码安装)
-  - [依赖](#依赖)
-  - [使用示例](#使用示例)
-  - [目录](#目录)
-  - [简介](#简介)
-  - [实现](#实现)
-    - [KAN](#kan)
-    - [FourierKAN](#fourierkan)
-    - [ChebyKAN](#chebykan)
-    - [JacobiKAN](#jacobikan)
-    - [TaylorKAN](#taylorkan)
-    - [WaveletKAN](#waveletkan)
-  - [应用实例](#应用实例)
-  - [参考资料](#参考资料)
-  - [许可证](#许可证)
-  - [Star History](#star-history)
+
+
 
 ## 简介
 

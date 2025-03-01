@@ -59,18 +59,18 @@ class ChebyKANLinear(torch.nn.Module):
         self.reset_parameters()
 
     def reset_parameters(self):
-        # 使用 Kaiming 初始化基础权重参数 base_weight
-        torch.nn.init.kaiming_uniform_(self.base_weight, a=math.sqrt(5) * self.scale_base)
+        # 使用 Kaiming 正态分布初始化基础权重参数 base_weight
+        torch.nn.init.kaiming_normal_(self.base_weight, a=math.sqrt(5) * self.scale_base)
 
-        # 初始化 Chebyshev 系数参数 cheby_coeffs
+        # 使用正态分布初始化 Chebyshev 系数参数 cheby_coeffs
         with torch.no_grad():
             std = self.scale_cheby / math.sqrt(self.in_features)
-            self.cheby_coeffs.uniform_(-std, std)
+            self.cheby_coeffs.normal_(0, std)
 
         if self.use_bias:
             fan_in, _ = torch.nn.init._calculate_fan_in_and_fan_out(self.base_weight)
             bound = 1 / math.sqrt(fan_in)
-            torch.nn.init.uniform_(self.bias, -bound, bound)
+            torch.nn.init.normal_(self.bias, 0, bound)
 
     def chebyshev_polynomials(self, x: torch.Tensor):
         """
@@ -83,8 +83,8 @@ class ChebyKANLinear(torch.nn.Module):
             torch.Tensor: Chebyshev 多项式值，形状为 (batch_size, in_features, degree + 1)
         """
         # 将 x 缩放到 [-1, 1] 区间，并且用clamp裁剪，否则会出现nan
-        # x = torch.tanh(x.clamp(-1,1))
-        x = torch.tanh(x)
+        x = torch.tanh(x.clamp(-1,1))
+        # x = torch.tanh(x)
 
         # 计算 arccos(x)，以便使用 Chebyshev 多项式的三角函数定义
         theta = torch.acos(x)  # 形状为 (batch_size, in_features)
@@ -158,8 +158,8 @@ class ChebyKAN(torch.nn.Module):
         self,
         layers_hidden,
         degree=7,
-        scale_base=1.0,
-        scale_cheby=1.0,
+        scale_base=0.5,
+        scale_cheby=0.3,
         base_activation=torch.nn.SiLU,
         use_bias=False,
     ):

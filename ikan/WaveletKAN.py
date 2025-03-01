@@ -220,8 +220,8 @@ class WaveletKAN(torch.nn.Module):
         self,
         layers_hidden,
         wavelet_type='mexican_hat',
-        scale_base=1.0,
-        scale_wavelet=1.0,
+        scale_base=0.5,
+        scale_wavelet=0.3,
         base_activation=torch.nn.SiLU,
         use_bias=True,
     ):

@@ -11,8 +11,8 @@ class JacobiKANLinear(torch.nn.Module):
         degree=5,
         a=1.0,
         b=1.0,
-        scale_base=1.0,
-        scale_jacobi=1.0,
+        scale_base=0.5,
+        scale_jacobi=0.5,
         base_activation=torch.nn.SiLU,
         use_bias=True,
     ):
