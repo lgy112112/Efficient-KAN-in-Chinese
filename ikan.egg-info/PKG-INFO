@@ -1,6 +1,6 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.2
 Name: ikan
-Version: 0.2.0
+Version: 1.1.0
 Summary: An efficient KAN implementation in Chinese.
 Home-page: https://github.com/lgy112112/Efficient-KAN-in-Chinese
 Author: Guoying LIAO
@@ -11,6 +11,19 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: torch>=1.9.0
+Requires-Dist: torchinfo
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
 
 # Efficient-KAN-in-Chinese
 
@@ -18,63 +31,10 @@ License-File: LICENSE
 
 ---
 
-## 安装
-
-### 从 PyPI 安装
-可以直接通过 [PyPI](https://pypi.org/project/efficient-kan/) 使用 `pip` 进行安装：
-```bash
-pip install ikan
-```
-
-### 从 GitHub 安装（开发版本）
-若需要安装最新的开发版本，可以从 GitHub 仓库直接安装：
-```bash
-pip install git+https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
-```
-
-### 从源码安装
-你也可以从源码安装：
-1. 克隆项目仓库：
-   ```bash
-   git clone https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
-   ```
-2. 进入项目目录：
-   ```bash
-   cd Efficient-KAN-in-Chinese
-   ```
-3. 使用可编辑模式安装：
-   ```bash
-   pip install -e .
-   ```
-
----
-
-## 依赖
-本项目依赖以下 Python 库：
-- `torch>=1.9.0`
-- `torchinfo`
-- `numpy`
-
-通过 `pip` 安装时会自动安装这些依赖。
-
----
-
-## 使用示例
-以下是如何使用本项目的一个简单示例：
-
-```python
-import efficient_kan  # 替换为实际模块名称
-from efficient_kan.ChebyKAN import SomeClassOrFunction  # 替换为具体函数或类
-
-# 示例用法
-result = SomeClassOrFunction(input_data)
-print(result)
-```
----
-
 ## 目录
 
 - [Efficient-KAN-in-Chinese](#efficient-kan-in-chinese)
+  - [重大更新](#重大更新)
   - [安装](#安装)
     - [从 PyPI 安装](#从-pypi-安装)
     - [从 GitHub 安装（开发版本）](#从-github-安装开发版本)
@@ -94,6 +54,94 @@ print(result)
   - [参考资料](#参考资料)
   - [许可证](#许可证)
   - [Star History](#star-history)
+
+---
+
+## 重大更新
+
+### 1. 各类KAN默认参数调整
+
+在深入研究各种KAN变体的性能后，我对默认参数进行了关键调整，主要针对初始化方式和缩放系数：
+- **所有KAN**：`scale_base`从1.0降至0.5以下
+- **ChebyKAN**：`scale_cheby`从1.0降至0.5
+- **FourierKAN**：将`scale_fourier`从1.0降至0.3
+- **JacobiKAN**：将`scale_jacobi`从1.0降至0.4
+- **TaylorKAN**：将`scale_taylor`从1.0降至0.5
+- **WaveletKAN**：将`scale_wavelet`从1.0降至0.5
+
+通过`KAN.ipynb`可以测试，在相同迭代次数下**超越传统MLP**。测试结果显示，参数调整后的KAN模型不仅训练速度更快，收敛性更好，而且在拟合复杂函数时的精度也明显提高。
+
+---
+
+## 安装
+
+### 从 PyPI 安装
+可以直接通过 [PyPI](https://pypi.org/project/efficient-kan/) 使用 `pip` 进行安装：
+```bash
+pip install ikan
+```
+随后请不要忘记重启一下IDE以保证安装完整。
+
+### 从 GitHub 安装（开发版本）
+若需要安装最新的开发版本，可以从 GitHub 仓库直接安装：
+```bash
+pip install git+https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
+```
+随后请不要忘记重启一下IDE以保证安装完整。
+
+
+### 从源码安装
+你也可以从源码安装：
+1. 克隆项目仓库：
+   ```bash
+   git clone https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
+   ```
+2. 进入项目目录：
+   ```bash
+   cd Efficient-KAN-in-Chinese
+   ```
+3. 使用可编辑模式安装：
+   ```bash
+   pip install -e .
+   ```
+随后请不要忘记重启一下IDE以保证安装完整。
+  
+
+---
+
+## 依赖
+本项目依赖以下 Python 库：
+- `torch>=1.9.0`
+- `torchinfo`
+- `numpy`
+
+通过 `pip` 安装时会自动安装这些依赖。
+
+---
+
+## 使用示例
+以下是如何使用本项目的一个简单示例：
+
+```python
+from ikan.ChebyKAN import ChebyKAN
+
+model = ChebyKAN(
+    layers_hidden=layers_hidden,
+    degree=5,
+    scale_base=1.0,
+    scale_cheby=1.0,
+    base_activation=torch.nn.SiLU,
+    use_bias=True,
+)
+
+summary(model, input_size=(64,))
+
+```
+---
+
+
+
+
 
 ## 简介
 

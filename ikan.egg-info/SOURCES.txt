@@ -1,10 +1,6 @@
-KAN.ipynb
 LICENSE
 README.md
 setup.py
-test.ipynb
-dist/ikan-0.2.0-py3-none-any.whl
-dist/ikan-0.2.0.tar.gz
 ikan/ChebyKAN.py
 ikan/FourierKAN.py
 ikan/JacobiKAN.py
@@ -17,12 +13,3 @@ ikan.egg-info/SOURCES.txt
 ikan.egg-info/dependency_links.txt
 ikan.egg-info/requires.txt
 ikan.egg-info/top_level.txt
-ikan/__pycache__/ChebyKAN.cpython-310.pyc
-ikan/__pycache__/ChebyKAN.cpython-312.pyc
-ikan/__pycache__/FourierKAN.cpython-310.pyc
-ikan/__pycache__/JacobiKAN.cpython-310.pyc
-ikan/__pycache__/KAN.cpython-310.pyc
-ikan/__pycache__/TaylorKAN.cpython-310.pyc
-ikan/__pycache__/WaveletKAN.cpython-310.pyc
-ikan/__pycache__/__init__.cpython-310.pyc
-ikan/__pycache__/__init__.cpython-312.pyc
