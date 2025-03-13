@@ -1,0 +1,14 @@
+Metadata-Version: 2.2
+Name: kat_rational
+Version: 0.4
+Summary: A simple example of a PyTorch extension, implementing a group-wise rational function for kat
+Author: adamdad
+Author-email: yxy_adadm@qq.com
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: summary
+
+This package provides a PyTorch extension for computing group-wise rational functions. 
+                        It is designed to be used as part of the 'kat' project, enhancing its capabilities in handling
+                        specialized mathematical functions with optimized CUDA support.
