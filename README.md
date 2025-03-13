@@ -44,6 +44,39 @@
 
 通过`KAN.ipynb`可以测试，在相同迭代次数下**超越传统MLP**。测试结果显示，参数调整后的KAN模型不仅训练速度更快，收敛性更好，而且在拟合复杂函数时的精度也明显提高。
 
+### 2. GroupKAN
+
+本项目新增基于Kolmogorov-Arnold Transformer (KAT)的**GroupKAN**实现，这是KAN的一种高效变体。我在源代码基础上修复了CPU无法训练的bug，并修复了不支持2D tensor的bug：
+
+- [KAT (Kolmogorov-Arnold Transformer)](https://github.com/Adamdad/kat) - 由Xingyi Yang和Xinchao Wang开发，GroupKAN基于此实现
+- [rational_kat_cu](https://github.com/Adamdad/rational_kat_cu) - KAT的CUDA/Triton实现，为GroupKAN提供了底层支持
+
+- **实现原理**：使用了KAT_Group作为激活函数，替代了传统KAN中的B样条函数
+- **性能优势**：相比原始KAN，GroupKAN具有更快的训练速度和更高的计算效率
+- **CUDA支持**：底层使用CUDA/Triton实现的Rational函数，提供了卓越的性能
+- **简化结构**：采用"先激活后线性变换"的结构设计，这符合Kolmogorov-Arnold定理的核心思想
+
+你可以使用以下代码创建并测试GroupKAN模型：
+
+```python
+from ikan.GroupKAN import GroupKAN
+
+# 定义网络层结构（确保每层特征数是num_groups的倍数）
+layers_hidden = [64, 128, 64, 32]
+
+# 创建模型
+model = GroupKAN(
+    layers_hidden=layers_hidden,
+    act_mode="swish",  # 可选: "gelu", "swish", "identity"
+    drop=0.1,
+    num_groups=8
+)
+
+# 使用torchinfo查看模型结构
+from torchinfo import summary
+summary(model, input_size=(16, 64))
+```
+
 ---
 
 ## 安装
@@ -182,6 +215,8 @@ Kolmogorov-Arnold 网络（KAN）是一类基于 Kolmogorov-Arnold 表示定理�
 - [Wav-KAN](https://github.com/zavareh1/Wav-KAN)
 - [ChebyKAN](https://github.com/SynodicMonth/ChebyKAN)
 - [FourierKAN](https://github.com/GistNoesis/FourierKAN/)
+- [KAT (Kolmogorov-Arnold Transformer)](https://github.com/Adamdad/kat) - 由Xingyi Yang和Xinchao Wang开发，GroupKAN基于此实现
+- [rational_kat_cu](https://github.com/Adamdad/rational_kat_cu) - KAT的CUDA/Triton实现，为GroupKAN提供了底层支持
 
 ## 许可证
 
