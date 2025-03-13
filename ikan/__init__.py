@@ -6,7 +6,7 @@ from .FourierKAN import FourierKANLinear, FourierKAN
 from .JacobiKAN import JacobiKANLinear, JacobiKAN
 from .TaylorKAN import TaylorKANLinear, TaylorKAN
 from .WaveletKAN import WaveletKANLinear, WaveletKAN
-
+from .GroupKAN import GroupKANLinear, GroupKAN
 __all__ = [
     "KANLinear",
     "KAN",
@@ -20,4 +20,6 @@ __all__ = [
     "TaylorKAN",
     "WaveletKANLinear",
     "WaveletKAN",
+    "GroupKANLinear",
+    "GroupKAN",
 ]
