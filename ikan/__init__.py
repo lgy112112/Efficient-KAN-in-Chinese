@@ -20,6 +20,6 @@ __all__ = [
     "TaylorKAN",
     "WaveletKANLinear",
     "WaveletKAN",
-    "GroupKANLinear",
-    "GroupKAN",
+    # "GroupKANLinear",
+    # "GroupKAN",
 ]
