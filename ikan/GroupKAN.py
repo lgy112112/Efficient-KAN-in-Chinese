@@ -1,4 +1,5 @@
 import sys
+# import os; print("\n\n",os.getcwd())
 sys.path.insert(0, 'ikan/groupkan/rational_kat_cu')
 from kat_rational import KAT_Group
 import torch

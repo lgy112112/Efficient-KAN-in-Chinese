@@ -1,4 +1,4 @@
-__version__ = "1.1.0"
+__version__ = "1.2.8"
 
 from .KAN import KANLinear, KAN
 from .ChebyKAN import ChebyKANLinear, ChebyKAN
@@ -20,6 +20,6 @@ __all__ = [
     "TaylorKAN",
     "WaveletKANLinear",
     "WaveletKAN",
-    # "GroupKANLinear",
-    # "GroupKAN",
+    "GroupKANLinear",
+    "GroupKAN",
 ]

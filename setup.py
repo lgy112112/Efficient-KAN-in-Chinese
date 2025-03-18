@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="ikan",  # 包名称，用作 pip install 的名字
-    version="1.1.0",  # 包版本
+    version="1.2.8",  # 包版本
     author="Guoying LIAO",  # 作者姓名
     author_email="lgy112112@gmail.com",  # 作者邮箱
     description="An efficient KAN implementation in Chinese.",  # 简要描述
@@ -15,6 +15,7 @@ setup(
         "torchinfo",
         "numpy",
         "scikit-learn",
+        "timm"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

@@ -3,6 +3,7 @@ README.md
 setup.py
 ikan/ChebyKAN.py
 ikan/FourierKAN.py
+ikan/GroupKAN.py
 ikan/JacobiKAN.py
 ikan/KAN.py
 ikan/TaylorKAN.py
