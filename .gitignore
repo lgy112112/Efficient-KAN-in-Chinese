@@ -4,3 +4,4 @@ dist/
 *.whl
 *.tar.gz
 *.zip
+update.sh

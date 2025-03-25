@@ -58,6 +58,12 @@ Dynamic: summary
 
 ---
 
+## 重要须知
+
+### 2025-03-25
+
+他妈的那个GroupKAN的仓库依赖一直说某个folder不存在，请大家暂且不要使用 `pip install ikan` 安装，而是使用 `git clone https://github.com/lgy112112/Efficient-KAN-in-Chinese.git` 和 `pip install -e .` 安装。
+
 ## 重大更新
 
 ### 1. 各类KAN默认参数调整
