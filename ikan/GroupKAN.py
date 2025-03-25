@@ -1,5 +1,13 @@
 import sys
-import os; print("\n\n",os.getcwd())
+import os
+
+# 获取当前脚本所在的目录
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# 更改工作目录到脚本所在目录
+os.chdir(script_dir)
+# print("\n\n", os.getcwd())
+
+
 # sys.path.insert(0, 'ikan/groupkan/rational_kat_cu')
 from kat_rational import KAT_Group
 import torch

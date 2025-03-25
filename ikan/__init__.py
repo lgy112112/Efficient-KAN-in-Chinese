@@ -1,4 +1,4 @@
-__version__ = "1.2.9"
+__version__ = "1.2.10"
 
 from .KAN import KANLinear, KAN
 from .ChebyKAN import ChebyKANLinear, ChebyKAN
