@@ -1,6 +1,6 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.4
 Name: ikan
-Version: 1.2.8
+Version: 1.2.9
 Summary: An efficient KAN implementation in Chinese.
 Home-page: https://github.com/lgy112112/Efficient-KAN-in-Chinese
 Author: Guoying LIAO
@@ -22,6 +22,7 @@ Dynamic: classifier
 Dynamic: description
 Dynamic: description-content-type
 Dynamic: home-page
+Dynamic: license-file
 Dynamic: requires-dist
 Dynamic: requires-python
 Dynamic: summary

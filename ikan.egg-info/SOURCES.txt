@@ -14,3 +14,12 @@ ikan.egg-info/SOURCES.txt
 ikan.egg-info/dependency_links.txt
 ikan.egg-info/requires.txt
 ikan.egg-info/top_level.txt
+ikan/kat_rational/__init__.py
+ikan/kat_rational/fit.py
+ikan/kat_rational/gain.py
+ikan/kat_rational/kat_1dgroup.py
+ikan/kat_rational/kat_1dgroup_torch.py
+ikan/kat_rational/kat_1dgroup_triton.py
+ikan/kat_rational/kat_2dgroup_triton.py
+ikan/kat_rational/rational_triton.py
+ikan/kat_rational/rational_triton2d.py
