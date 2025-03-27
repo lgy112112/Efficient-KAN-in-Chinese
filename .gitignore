@@ -5,3 +5,4 @@ dist/
 *.tar.gz
 *.zip
 update.sh
+data/
