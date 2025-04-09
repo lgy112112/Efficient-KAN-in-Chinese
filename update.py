@@ -14,18 +14,18 @@ def main():
     subprocess.run(["python", "setup.py", "sdist", "bdist_wheel"], check=True)
 
     # 检查 wheel 文件内容
-    with zipfile.ZipFile('dist/ikan-1.2.10-py3-none-any.whl', 'r') as zip_ref:
+    with zipfile.ZipFile('dist/ikan-1.3.0-py3-none-any.whl', 'r') as zip_ref:
         zip_ref.printdir()  # 打印文件列表
 
     # 检查源码包内容
-    with tarfile.open('dist/ikan-1.2.10.tar.gz', 'r:gz') as tar_ref:
+    with tarfile.open('dist/ikan-1.3.0.tar.gz', 'r:gz') as tar_ref:
         tar_ref.list()  # 打印文件列表
 
     # 上传到正式 PyPI 仓库
     subprocess.run(["twine", "upload", "dist/*"], check=True)
 
     # 测试安装
-    # subprocess.run(["pip", "install", "ikan==1.2.10", "--force-reinstall"], check=True)
+    # subprocess.run(["pip", "install", "ikan==1.3.0", "--force-reinstall"], check=True)
 
 if __name__ == "__main__":
     main()

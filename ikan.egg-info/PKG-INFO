@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: ikan
-Version: 1.2.10
+Version: 1.3.0
 Summary: An efficient KAN implementation in Chinese.
 Home-page: https://github.com/lgy112112/Efficient-KAN-in-Chinese
 Author: Guoying LIAO
@@ -23,14 +23,19 @@ License-File: LICENSE
 ## 目录
 
 - [Efficient-KAN-in-Chinese](#efficient-kan-in-chinese)
+  - [目录](#目录)
+  - [重要须知](#重要须知)
+    - [2025-04-09](#2025-04-09)
+    - [2025-03-25](#2025-03-25)
   - [重大更新](#重大更新)
+    - [1. 各类KAN默认参数调整](#1-各类kan默认参数调整)
+    - [2. GroupKAN](#2-groupkan)
   - [安装](#安装)
     - [从 PyPI 安装](#从-pypi-安装)
     - [从 GitHub 安装（开发版本）](#从-github-安装开发版本)
     - [从源码安装](#从源码安装)
   - [依赖](#依赖)
   - [使用示例](#使用示例)
-  - [目录](#目录)
   - [简介](#简介)
   - [实现](#实现)
     - [KAN](#kan)
@@ -48,23 +53,38 @@ License-File: LICENSE
 
 ## 重要须知
 
+### 2025-04-09
+他妈的这次是真可以了。1.3.0版本可包外调用 `GroupKAN`
+
 ### 2025-03-25
 
-他妈的那个GroupKAN的仓库依赖一直说某个folder不存在，请大家暂且不要使用 `pip install ikan` 安装，而是使用 `git clone https://github.com/lgy112112/Efficient-KAN-in-Chinese.git` 和 `pip install -e .` 安装。
+~~他妈的那个GroupKAN的仓库依赖一直说某个folder不存在，请大家暂且不要使用 `pip install ikan` 安装，而是使用 `git clone https://github.com/lgy112112/Efficient-KAN-in-Chinese.git` 和 `pip install -e .` 安装。~~
+
+他妈的终于给我修复了路径问题，现在 `ikan==1.2.10` 版本可以舒畅地使用
+
+```python
+from ikan.GroupKAN import GroupKAN, GroupKANLinear
+```
+
+此外，如果你是windows开发者，恰好没有triton且安装报错，请
+`pip install triton-windows`
+
+windows开发无罪！
 
 ## 重大更新
 
 ### 1. 各类KAN默认参数调整
 
 在深入研究各种KAN变体的性能后，我对默认参数进行了关键调整，主要针对初始化方式和缩放系数：
+
 - **所有KAN**：`scale_base`从1.0降至0.5以下
 - **ChebyKAN**：`scale_cheby`从1.0降至0.5
-- **FourierKAN**：将`scale_fourier`从1.0降至0.3
-- **JacobiKAN**：将`scale_jacobi`从1.0降至0.4
-- **TaylorKAN**：将`scale_taylor`从1.0降至0.5
-- **WaveletKAN**：将`scale_wavelet`从1.0降至0.5
+- **FourierKAN**：将 `scale_fourier`从1.0降至0.3
+- **JacobiKAN**：将 `scale_jacobi`从1.0降至0.4
+- **TaylorKAN**：将 `scale_taylor`从1.0降至0.5
+- **WaveletKAN**：将 `scale_wavelet`从1.0降至0.5
 
-通过`KAN.ipynb`可以测试，在相同迭代次数下**超越传统MLP**。测试结果显示，参数调整后的KAN模型不仅训练速度更快，收敛性更好，而且在拟合复杂函数时的精度也明显提高。
+通过 `KAN.ipynb`可以测试，在相同迭代次数下**超越传统MLP**。测试结果显示，参数调整后的KAN模型不仅训练速度更快，收敛性更好，而且在拟合复杂函数时的精度也明显提高。
 
 ### 2. GroupKAN
 
@@ -72,7 +92,6 @@ License-File: LICENSE
 
 - [KAT (Kolmogorov-Arnold Transformer)](https://github.com/Adamdad/kat) - 由Xingyi Yang和Xinchao Wang开发，GroupKAN基于此实现
 - [rational_kat_cu](https://github.com/Adamdad/rational_kat_cu) - KAT的CUDA/Triton实现，为GroupKAN提供了底层支持
-
 - **实现原理**：使用了KAT_Group作为激活函数，替代了传统KAN中的B样条函数
 - **性能优势**：相比原始KAN，GroupKAN具有更快的训练速度和更高的计算效率
 - **CUDA支持**：底层使用CUDA/Triton实现的Rational函数，提供了卓越的性能
@@ -104,22 +123,29 @@ summary(model, input_size=(16, 64))
 ## 安装
 
 ### 从 PyPI 安装
+
 可以直接通过 [PyPI](https://pypi.org/project/efficient-kan/) 使用 `pip` 进行安装：
+
 ```bash
 pip install ikan
 ```
+
 随后请不要忘记重启一下IDE以保证安装完整。
 
 ### 从 GitHub 安装（开发版本）
+
 若需要安装最新的开发版本，可以从 GitHub 仓库直接安装：
+
 ```bash
 pip install git+https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
 ```
+
 随后请不要忘记重启一下IDE以保证安装完整。
 
-
 ### 从源码安装
+
 你也可以从源码安装：
+
 1. 克隆项目仓库：
    ```bash
    git clone https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
@@ -132,13 +158,15 @@ pip install git+https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
    ```bash
    pip install -e .
    ```
+
 随后请不要忘记重启一下IDE以保证安装完整。
-  
 
 ---
 
 ## 依赖
+
 本项目依赖以下 Python 库：
+
 - `torch>=1.9.0`
 - `torchinfo`
 - `numpy`
@@ -148,6 +176,7 @@ pip install git+https://github.com/lgy112112/Efficient-KAN-in-Chinese.git
 ---
 
 ## 使用示例
+
 以下是如何使用本项目的一个简单示例：
 
 ```python
@@ -165,11 +194,8 @@ model = ChebyKAN(
 summary(model, input_size=(64,))
 
 ```
+
 ---
-
-
-
-
 
 ## 简介
 
@@ -218,13 +244,14 @@ Kolmogorov-Arnold 网络（KAN）是一类基于 Kolmogorov-Arnold 表示定理�
 以下是本人使用 KAN 进行的项目，欢迎大家复现并探讨：
 
 - **MIMI-MNIST 教程**：在 MNIST 数据集上应用 KAN 模型的教程，展示了如何构建和训练 KAN 来处理手写数字识别任务。
+
   - 项目地址：[MIMI-MNIST-Tutorial](https://github.com/lgy112112/MIMI-MNIST-Tutorial)
-  
 - **股票预测教程**：使用 KAN 模型进行股票价格预测的教程，包括数据预处理、模型构建和结果分析。
+
   - 项目地址：[Stocks_Prediction_Tutorial](https://github.com/lgy112112/Stocks_Prediction_Tutorial)
   - 项目地址：[KAN_Stocks](https://github.com/lgy112112/KAN_Stocks)
-  
 - **KAN 与 VGG 在 CIFAR-10 上的比较**：比较了 KAN 模型和 VGG 网络在 CIFAR-10 数据集上的分类性能，展示了 KAN 的潜力。
+
   - 项目地址：[KANvsVGGonCIFAR10](https://github.com/lgy112112/KANvsVGGonCIFAR10)
 
 ## 参考资料
@@ -251,4 +278,5 @@ Kolmogorov-Arnold 网络（KAN）是一类基于 Kolmogorov-Arnold 表示定理�
 ---
 
 欢迎大家提出建议和改进，共同完善本仓库。如有任何问题，请提交 [Issue](https://github.com/lgy112112/Efficient-KAN-in-Chinese/issues) 或 [Pull Request](https://github.com/lgy112112/Efficient-KAN-in-Chinese/pulls)。
+
 

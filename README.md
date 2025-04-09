@@ -9,6 +9,7 @@
 - [Efficient-KAN-in-Chinese](#efficient-kan-in-chinese)
   - [目录](#目录)
   - [重要须知](#重要须知)
+    - [2025-04-09](#2025-04-09)
     - [2025-03-25](#2025-03-25)
   - [重大更新](#重大更新)
     - [1. 各类KAN默认参数调整](#1-各类kan默认参数调整)
@@ -36,11 +37,14 @@
 
 ## 重要须知
 
+### 2025-04-09
+他妈的这次是真可以了。1.3.0版本可包外调用 `GroupKAN`
+
 ### 2025-03-25
 
 ~~他妈的那个GroupKAN的仓库依赖一直说某个folder不存在，请大家暂且不要使用 `pip install ikan` 安装，而是使用 `git clone https://github.com/lgy112112/Efficient-KAN-in-Chinese.git` 和 `pip install -e .` 安装。~~
 
-他妈的终于给我修复了路径问题，现在 `ikan==1.2.10` 版本可以舒畅地使用 
+他妈的终于给我修复了路径问题，现在 `ikan==1.2.10` 版本可以舒畅地使用
 
 ```python
 from ikan.GroupKAN import GroupKAN, GroupKANLinear

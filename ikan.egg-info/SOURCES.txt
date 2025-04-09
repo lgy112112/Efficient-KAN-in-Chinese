@@ -1,11 +1,12 @@
 .gitignore
+KAN-Vision.ipynb
 KAN.ipynb
 LICENSE
 README.md
 setup.py
 test.ipynb
 update.py
-update.sh
+__pycache__/dive-into-marimo.cpython-310.pyc
 ikan/ChebyKAN.py
 ikan/FourierKAN.py
 ikan/GroupKAN.py
@@ -14,6 +15,12 @@ ikan/KAN.py
 ikan/TaylorKAN.py
 ikan/WaveletKAN.py
 ikan/__init__.py
+ikan/kat_1dgroup.py
+ikan/kat_1dgroup_torch.py
+ikan/kat_1dgroup_triton.py
+ikan/kat_2dgroup_triton.py
+ikan/rational_triton.py
+ikan/rational_triton2d.py
 ikan.egg-info/PKG-INFO
 ikan.egg-info/SOURCES.txt
 ikan.egg-info/dependency_links.txt

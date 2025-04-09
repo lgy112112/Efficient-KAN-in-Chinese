@@ -5,11 +5,11 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 # 更改工作目录到脚本所在目录
 os.chdir(script_dir)
-# print("\n\n", os.getcwd())
+print("\n\n", os.getcwd())
 
 
 # sys.path.insert(0, 'ikan/groupkan/rational_kat_cu')
-from kat_rational import KAT_Group
+from .kat_1dgroup_triton import KAT_Group
 import torch
 import torch.nn as nn
 from functools import partial
