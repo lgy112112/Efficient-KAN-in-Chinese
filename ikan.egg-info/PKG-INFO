@@ -5,14 +5,17 @@ Summary: An efficient KAN implementation in Chinese.
 Home-page: https://github.com/lgy112112/Efficient-KAN-in-Chinese
 Author: Guoying LIAO
 Author-email: lgy112112@gmail.com
-License: UNKNOWN
-Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: torch>=1.9.0
+Requires-Dist: torchinfo
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Requires-Dist: timm
 
 # Efficient-KAN-in-Chinese
 
@@ -278,5 +281,3 @@ Kolmogorov-Arnold 网络（KAN）是一类基于 Kolmogorov-Arnold 表示定理�
 ---
 
 欢迎大家提出建议和改进，共同完善本仓库。如有任何问题，请提交 [Issue](https://github.com/lgy112112/Efficient-KAN-in-Chinese/issues) 或 [Pull Request](https://github.com/lgy112112/Efficient-KAN-in-Chinese/pulls)。
-
-
