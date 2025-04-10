@@ -37,6 +37,9 @@
 
 ## 重要须知
 
+### 2025-04-11
+建议使用源码安装进行可编辑模式的安装（后文有说明），在此之后，进入 `Efficient-KAN-in-Chinese/ikan/groupkan/rational_kat_cu` 进行 `GroupKAN` 驱动安装 `pip install -e .` ，可使用GPU加速GroupKAN
+
 ### 2025-04-09
 他妈的这次是真可以了。1.3.0版本可包外调用 `GroupKAN`
 
