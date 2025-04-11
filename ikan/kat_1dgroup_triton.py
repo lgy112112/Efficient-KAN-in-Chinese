@@ -5,7 +5,7 @@ from .rational_triton import RationalTriton1DGroup
 from .kat_1dgroup_torch import Rational_CUDA_A_1DGroup
 import json
 import os
-
+# print("\n\nikan/kat_1dgroup_triton.py --- activated\n\n")
 class KAT_Group(nn.Module):
     def __init__(self, num_groups=8, mode="gelu", device="cuda"):
         """

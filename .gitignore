@@ -6,3 +6,5 @@ dist/
 *.zip
 update.sh
 data/
+*.pth
+.gitignore

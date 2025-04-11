@@ -9,7 +9,7 @@ import os
 
 
 # sys.path.insert(0, 'ikan/groupkan/rational_kat_cu')
-from .kat_1dgroup_triton import KAT_Group
+from ikan.kat_1dgroup_triton import KAT_Group
 import torch
 import torch.nn as nn
 from functools import partial
@@ -36,7 +36,11 @@ class GroupKANLinear(nn.Module):
             device = "cuda" if torch.cuda.is_available() else "cpu"
         
         # 选择线性层类型 (Linear 或 Conv2d)
-        linear_layer = partial(nn.Conv2d, kernel_size=1) if use_conv else nn.Linear
+        # linear_layer = partial(nn.Conv2d, kernel_size=1) if use_conv else nn.Linear
+        if use_conv:
+            linear_layer = partial(nn.Conv2d, kernel_size=1)
+        else:     
+            linear_layer = nn.Linear
         
         # KAT_Group 激活层
         self.act = KAT_Group(mode=act_mode, device=device, num_groups=num_groups)
@@ -135,6 +139,7 @@ class GroupKAN(nn.Module):
 
 
 if __name__ == "__main__":
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     # 测试 GroupKAN 模型
     # 注意：所有特征数必须是 num_groups(默认8) 的倍数
     layers_hidden = [64, 128, 64, 32]  # 定义网络结构
@@ -143,13 +148,18 @@ if __name__ == "__main__":
     model = GroupKAN(
         layers_hidden=layers_hidden,
         act_mode="swish",  # 可以选择不同的激活函数：gelu, swish, identity 等
-        drop=0.1
+        drop=0.1,
+        device=device
     )
+    model = model.to(device)
     
     # 测试前向传播
     batch_size = 16
     x = torch.randn(batch_size, layers_hidden[0])  # 输入张量
+    x = x.to(device)
+    print(f"x device: {x.device}")
     output = model(x)
+    print(f"output device: {output.device}")
     
     print(f"输入形状: {x.shape}")
     print(f"输出形状: {output.shape}")

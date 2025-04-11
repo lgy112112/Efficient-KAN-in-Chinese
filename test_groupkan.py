@@ -1,4 +1,5 @@
-from ikan.GroupKAN import GroupKAN, GroupKANLinear
+from ikan.GroupKAN import GroupKANLinear
+from ikan.TaylorKAN import TaylorKANLinear
 import pandas as pd
 import numpy as np
 import torch
@@ -8,6 +9,8 @@ from torch.utils.data import DataLoader, TensorDataset
 from torch.profiler import profile, record_function, ProfilerActivity
 import datetime
 import os
+
+
 print(f"当前工作目录: {os.getcwd()}")
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 def train(model, train_loader, test_loader, criterion, optimizer, epochs=100, profile_enabled=False):
@@ -170,29 +173,43 @@ def profile_model(model, criterion, device, input_size=8):
     
     return prof
 
-class MLP(nn.Module):
+class MathMLP(nn.Module):
     def __init__(self, input_size=8):
-        super(MLP, self).__init__()
+        super(MathMLP, self).__init__()
         self.layers = nn.Sequential(
-            nn.Linear(input_size, 65),
+            nn.Linear(input_size, 128),
             nn.ReLU(),
-            nn.Linear(65,32),
+            nn.Linear(128,72),
             nn.ReLU(),
-            nn.Linear(32,1)
+            nn.Linear(72,1)
         )
 
     def forward(self, x):
         return self.layers(x)
 
-class KAN(nn.Module):
+class MathGroupKAN(nn.Module):
     def __init__(self, input_size=8):
-        super(KAN, self).__init__()
+        super(MathGroupKAN, self).__init__()
         self.layers = nn.Sequential(
             GroupKANLinear(input_size, 64,num_groups=4),
             nn.ReLU(),
             GroupKANLinear(64,32,num_groups=4),
             nn.ReLU(),
             GroupKANLinear(32,1,num_groups=4)
+        )
+
+    def forward(self, x):
+        return self.layers(x)
+    
+class MathTaylorKAN(nn.Module):
+    def __init__(self, input_size=8):
+        super(MathTaylorKAN, self).__init__()
+        self.layers = nn.Sequential(
+            TaylorKANLinear(input_size, 65),
+            nn.ReLU(),
+            TaylorKANLinear(65,32),
+            nn.ReLU(),
+            TaylorKANLinear(32,1)
         )
 
     def forward(self, x):
@@ -252,18 +269,17 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     # 创建并分析KAN模型
-    kan_model = KAN().to(device)
-    
+    groupkan_model = MathGroupKAN().to(device)
     # 创建并分析MLP模型
-    mlp_model = MLP().to(device)
+    mlp_model = MathMLP().to(device)
 
     # 分别对两个模型进行性能分析
     print("======= 单次前向和后向传播分析 =======")
-    kan_prof = profile_model(kan_model, criterion, device)
+    kan_prof = profile_model(groupkan_model, criterion, device)
     mlp_prof = profile_model(mlp_model, criterion, device)
     
     # 打印模型参数信息
-    for model in [kan_model, mlp_model]:
+    for model in [groupkan_model, mlp_model]:
         total_params = sum(p.numel() for p in model.parameters())
         trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
         
@@ -276,8 +292,8 @@ if __name__ == "__main__":
     if run_full_training:
         # 使用性能分析训练KAN模型
         print("\n======= KAN模型训练 (启用Profiler) =======")
-        kan_optimizer = optim.Adam(kan_model.parameters(), 1e-3)
-        train(kan_model, train_loader, test_loader, criterion, kan_optimizer, epochs=1, profile_enabled=True)
+        kan_optimizer = optim.Adam(groupkan_model.parameters(), 1e-3)
+        train(groupkan_model, train_loader, test_loader, criterion, kan_optimizer, epochs=1, profile_enabled=True)
         
         # 使用性能分析训练MLP模型
         # print("\n======= MLP模型训练 (启用Profiler) =======")
@@ -287,6 +303,6 @@ if __name__ == "__main__":
         # 正常训练(可选)
         print("\n======= 正常训练过程 =======")
         print("KAN模型训练")
-        kan_optimizer = optim.Adam(kan_model.parameters(), 1e-3)
-        train(kan_model, train_loader, test_loader, criterion, kan_optimizer, epochs=20, profile_enabled=False)
+        kan_optimizer = optim.Adam(groupkan_model.parameters(), 1e-3)
+        train(groupkan_model, train_loader, test_loader, criterion, kan_optimizer, epochs=20, profile_enabled=False)
 
