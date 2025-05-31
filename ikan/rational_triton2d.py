@@ -225,7 +225,7 @@ def rational_bwd_triton_2d(grad_output: Tensor, x: Tensor, n: Tensor, d: Tensor,
 
 class RationalTriton2D(torch.autograd.Function):
     @staticmethod
-    @torch.cuda.amp.custom_fwd(cast_inputs=torch.float32)
+    @torch.amp.custom_fwd(cast_inputs=torch.float32, device_type='cuda')
     def forward(ctx, input: Tensor, weight_numerator: Tensor, weight_denominator: Tensor, group: int) -> Tensor:
         """
         2D forward: Expects input of shape [B, D, H, W].
@@ -236,7 +236,7 @@ class RationalTriton2D(torch.autograd.Function):
         return output
 
     @staticmethod
-    @torch.cuda.amp.custom_bwd
+    @torch.amp.custom_bwd(device_type='cuda')
     def backward(ctx, grad_output: Tensor):
         input, weight_numerator, weight_denominator = ctx.saved_tensors
         group = ctx.group

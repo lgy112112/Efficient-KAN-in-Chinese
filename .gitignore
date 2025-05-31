@@ -8,3 +8,7 @@ update.sh
 data/
 *.pth
 .gitignore
+*.txt
+*.pyc
+profile_logs/
+ikan/_pycache_/
